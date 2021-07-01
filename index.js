@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser')
 const AWS = require('aws-sdk')
 const uuid = require('uuid')
 const path = require('path')
+const passport = require('passport')
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const index = require('./Routes/index')
 const home = require('./Routes/home')
@@ -42,6 +44,31 @@ const filefilter = (req,file,callback)=>{
 }
   
 app.use(multer({storage : storage, filefilter : filefilter}).single('profilePic'))
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/loginwithgoogle/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+      userProfile=profile;
+      return done(null, userProfile);
+  }
+));
 
 app.use(index)
 app.use('/home',home)

@@ -105,4 +105,10 @@ const postLogin = async (req,res) => {
     }
 }
 
-module.exports = { postSignup, postLogin}
+const loginWithGoogle = async (req,res) => {
+
+    
+
+}
+
+module.exports = { postSignup, postLogin, loginWithGoogle}

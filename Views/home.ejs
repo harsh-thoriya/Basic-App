@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        
+        <style>
+            .container-4{
+            overflow: hidden;
+            width: 300px;
+            vertical-align: middle;
+            white-space: nowrap;
+          }
+          .container-4 input#search{
+            width: 300px;
+            height: 35px;
+            background: white;
+            border: none;
+            font-size: 10pt;
+            float: left;
+            color: #111;
+            padding-left: 15px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+          }
+          .container-4 input#search::-webkit-input-placeholder {
+             color: #65737e;
+          }
+           
+          .container-4 input#search:-moz-placeholder { /* Firefox 18- */
+             color: #65737e;  
+          }
+           
+          .container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
+             color: #65737e;  
+          }
+           
+          .container-4 input#search:-ms-input-placeholder {  
+             color: #65737e;  
+          }
+          .container-4 button.icon{
+            -webkit-border-top-right-radius: 5px;
+            -webkit-border-bottom-right-radius: 5px;
+            -moz-border-radius-topright: 5px;
+            -moz-border-radius-bottomright: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+           
+            border: none;
+            background: lightgrey;
+            height: 50px;
+            width: 50px;
+            color: #4f5b66;
+            opacity: 0;
+            font-size: 10pt;
+           
+            -webkit-transition: all .55s ease;
+            -moz-transition: all .55s ease;
+            -ms-transition: all .55s ease;
+            -o-transition: all .55s ease;
+            transition: all .55s ease;
+          }
+          .container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon{
+              outline: none;
+              opacity: 1;
+              height: 35px;
+              margin-left: -50px;
+            }
+           
+            .container-4:hover button.icon:hover{
+              background: grey;
+            }
+            .navbar-brand:hover{
+  color: black;
+}
+
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  float: left; 
+  margin-left: 30px;
+  margin-top:20px;
+  width: 225px;
+  height: 200px;
+  border-radius: 40px;
+  box-shadow: 5px 5px 3px 1px rgba(0,0,0,0.1), -5px -5px 3px 1px rgba(0,0,0,0.22);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card .card_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+}
+
+.card .card_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  object-fit: cover;
+}
+
+.card .card_title {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: -10px;
+  height: 40px;
+}
+
+.card:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+
+.title-white {
+  color: white;
+}
+
+.title-black {
+  color: black;
+}
+
+@media all and (max-width: 500px) {
+  .card-list {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
+.modal-dialog-center {
+    margin-top: 10%;
+}
+#inner {  
+  border: 1px solid black;
+}
+
+#outer {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+          </style>
+    </head>
+    <body style="padding-top: 60px; ">
+        
+        <nav class="navbar navbar-expand-sm fixed-top" style="background-color: #285163; ">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="navbar-brand" style="color: white" href="/home/sort">Sort</a>
+                </li>
+                <div class="form-inline ml-auto" >
+                  <form class=" my-2 my-lg-0" action="/home/usersearch" enctype="multipart/form-data" method="POST" >
+                    <div class="box">
+                      <div class="container-4">
+                        <input style="width: 200px; height: 35px;" id="search" type="text" placeholder="Search" aria-label="Search" name="username" />
+                        <button style="height: 35px;" class="icon" type="submit"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+        </nav>
+       
+        <% users.forEach(function(user) { %>
+            <p style="color: black; font-size: 15px;" style="white-space: initial;"><%= user.username %></p>
+        <% }); %> 
+
+    </body>
+</html>

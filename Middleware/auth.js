@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const userModel = require("../Models/users.js");
 const Cryptr = require('cryptr');
-const cryptr = new Cryptr(process.env.CRYPTR);
 
 const cryptr = new Cryptr('superNova');
 
