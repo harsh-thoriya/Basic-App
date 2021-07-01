@@ -32,12 +32,13 @@ const postSignup = async (req,res) => {
                 bcrypt.hash(req.body.password,12).then(async (password)=>{
                     let username = req.body.username
                     let email = req.body.email
-                    
+                    let role = req.body.role
                     
                     const user = new userModel({
                         username : username,
                         email: email,
                         password : password,
+                        role : role,
                         imageURL : data.Location
                     })
                     await user.save().then(result => {
