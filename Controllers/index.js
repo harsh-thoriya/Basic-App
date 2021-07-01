@@ -72,7 +72,12 @@ const generateToken = async function(user){
 
 const postLogin = async (req,res) => {
     if(req.user){
-        res.redirect('/home')
+        if(req.user.role == "admin"){
+            res.redirect('/home')
+        }
+        else{
+            res.render('employee.ejs')
+        }
     }
     else{
 
@@ -89,7 +94,12 @@ const postLogin = async (req,res) => {
                 res.cookie('token',token,{httpOnly:true})
                 console.log("loggedin")
                 console.log("success")
-                res.redirect('/home');
+                if(user.role == "admin"){
+                    res.redirect('/home')
+                }
+                else{
+                    res.render('employee.ejs')
+                }
             }
             else{
                 res.redirect('/')
@@ -98,7 +108,7 @@ const postLogin = async (req,res) => {
             })
             .catch(err => {
             console.log(err);
-            res.redirect('/login');
+            res.redirect('/');
             });
         })
         .catch(err => console.log(err));

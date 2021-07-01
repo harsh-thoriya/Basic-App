@@ -3,8 +3,8 @@ const homeController = require('../Controllers/home')
 const auth = require('../Middleware/auth')
 const router = express.Router();
 
-router.get('/',homeController.getHomepage);
-router.post('/usersearch',homeController.userSearch);
-router.get('/sort',homeController.getSortedData)
+router.get('/',auth,homeController.getHomepage);
+router.post('/usersearch',auth,homeController.userSearch);
+router.get('/sort',auth,homeController.getSortedData)
 
 module.exports = router ;

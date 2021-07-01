@@ -1,11 +1,13 @@
 const jwt = require('jsonwebtoken');
 const userModel = require("../Models/users.js");
 const Cryptr = require('cryptr');
+const jsonWebTokens = require('jsonwebtoken')
 
 const cryptr = new Cryptr('superNova');
 
 const auth = async (req, res, next) => {
     try {
+     
         const decryptedToken = cryptr.decrypt(req.cookies.token);
         const decoded = jsonWebTokens.verify(decryptedToken,'abcd')
         const user = await userModel.findOne({ _id: decoded._id })
